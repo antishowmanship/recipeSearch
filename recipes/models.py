@@ -7,6 +7,7 @@ class Recipe(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=250, unique=True)
+    category = models.ForeignKey(IngredientCategory)
 
 
 class IngredientCategory(models.Model):
@@ -15,22 +16,21 @@ class IngredientCategory(models.Model):
 
 class GroceryList(models.Model):
     name = models.CharField(max_length=200)
+    expired = models.BooleanField(default=False)
     createdOn = models.DateTimeField(auto_now_add=True)
     updatedOn = models.DateTimeField(auto_now_add=True, auto_now=True)
 
 
 class GroceryListEntry(models.Model):
-    ingredientAmount = models.ForeignKey(IngredientAmount)
     groceryList = models.ForeignKey(GroceryList, on_delete=models.CASCADE)
+    amount = models.FloatField()
+    ingredientUnit = models.ForeignKey(IngredientUnit)
+    checked = models.BooleanField(default=False)
+    amount_selected = models.FloatField(default=0)
 
 
 class IngredientUnit(models.Model):
     name = models.CharField(max_length=200)
-
-
-class IngredientAmount(models.Model):
-    unit = models.ForeignKey(IngredientUnit, on_delete=models.CASCADE)
-    volume = models.FloatField()
 
 
 class IngredientConversion(models.Model):
