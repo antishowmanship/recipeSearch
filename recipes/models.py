@@ -13,7 +13,7 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     owner = models.ForeignKey(User)
-    ingredients = models.ManyToManyField(Ingredient, through=RecipeEntry)
+    ingredients = models.ManyToManyField(Ingredient, through='RecipeEntry')
 
 
 class RecipeEntry(models.Model):
@@ -36,7 +36,7 @@ class GroceryList(models.Model):
     expired = models.BooleanField(default=False)
     createdOn = models.DateTimeField(auto_now_add=True)
     updatedOn = models.DateTimeField(auto_now=True)
-    entries = models.ManyToManyField(Ingredient, through=GroceryListEntry)
+    entries = models.ManyToManyField(Ingredient, through='GroceryListEntry')
 
 
 class GroceryListEntry(models.Model):
