@@ -32,6 +32,7 @@ class Menu(models.Model):
 
 class GroceryList(models.Model):
     name = models.CharField(max_length=200)
+    owner = models.ForeignKey(User)
     expired = models.BooleanField(default=False)
     createdOn = models.DateTimeField(auto_now_add=True)
     updatedOn = models.DateTimeField(auto_now=True)
