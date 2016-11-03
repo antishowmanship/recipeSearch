@@ -1,5 +1,7 @@
 .idea
 .idea/*
+settings.pyc
+settings.cpython-35.pyc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
